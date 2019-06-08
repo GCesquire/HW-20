@@ -14,11 +14,11 @@ class SearchBooks extends Component {
         message: ""
     };
 
-    handleInputChange = event => {
+    query = event => {
         this.setState({ search: event.target.value })
     }
 
-    handleFormSubmit = event => {
+    submit = event => {
         event.preventDefault();
         API.getGoogleSearchBooks(this.state.search)
             .then(res => {
@@ -45,7 +45,7 @@ class SearchBooks extends Component {
             .catch(err => this.setState({ error: err.items }));
     }
 
-    handleSavedButton = event => {
+    saveButton = event => {
         event.preventDefault();
         console.log(this.state.books)
         let savedBooks = this.state.books.filter(book => book.id === event.target.id)
@@ -64,15 +64,15 @@ class SearchBooks extends Component {
                     <Row>
                         <Col size="12">
                             <SearchForm
-                                handleFormSubmit={this.handleFormSubmit}
-                                handleInputChange={this.handleInputChange}
+                                submit={this.submit}
+                                query={this.query}
                             />
                         </Col>
                     </Row>
                 </Container>
                 <br></br>
                 <Container>
-                    <SearchResult books={this.state.books} handleSavedButton={this.handleSavedButton} />
+                    <SearchResult books={this.state.books} saveButton={this.saveButton} />
                 </Container>
             </Container>
         )

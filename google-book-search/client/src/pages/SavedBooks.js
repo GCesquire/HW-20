@@ -9,15 +9,15 @@ class SavedBooks extends Component {
         savedBooks: []
     };
 
-    componentDidMount() {
+    componentMounted() {
         API.getBooks()
             .then(res => this.setState({ savedBooks: res.data }))
             .catch(err => console.log(err))
     }
 
-    handleDeleteButton = id => {
+    deleteButton = id => {
         API.deleteBook(id)
-            .then(res => this.componentDidMount())
+            .then(res => this.componentMounted())
             .catch(err => console.log(err))
     }
 
@@ -26,7 +26,7 @@ class SavedBooks extends Component {
             <Container fluid className="container">
                 <Header />
                 <Container>
-                    <SavedResult savedBooks={this.state.savedBooks} handleDeleteButton={this.handleDeleteButton} />
+                    <SavedResult savedBooks={this.state.savedBooks} deleteButton={this.deleteButton} />
                 </Container>
             </Container>
         )
