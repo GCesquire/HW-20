@@ -1,16 +1,16 @@
 const db = require("../models");
 
 module.exports = {
-    findAll: function(req, res) {
+    allResults: function(req, res) {
         db.Book
             .find(req.query)
             .sort({ date: -1 })
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
-    findById: function(req, res) {
+    idResults: function(req, res) {
         db.Book
-            .findById(req.params.id)
+            .idResults(req.params.id)
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
@@ -28,7 +28,7 @@ module.exports = {
     },
     remove: function(req, res) {
         db.Book
-            .findById({ _id: req.params.id })
+            .idResults({ _id: req.params.id })
             .then(dbModel => dbModel.remove())
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
