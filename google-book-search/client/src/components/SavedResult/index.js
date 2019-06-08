@@ -15,17 +15,15 @@ const SavedResult = props => {
         <div className="card">
             <div className="card-body player">
                 <div className="article">
-                    <h3>Books that You Saved</h3>
+                    <h3>Saved Books</h3>
                     {props.savedBooks.map(savedbook => {
                         return (
                             <li className="saved-list list-group-item">
                                 <Row className="SearchResult" id={savedbook.title + "Card"} key={savedbook._id}>
-                                    {/* col-3 show image of the book */}
                                     <Col size="2" className="bookImage">
                                         <img src={savedbook.image} alt={savedbook.title} />
                                     </Col>
                                     <Col size="1" className="emptyCol"/>
-                                    {/* col-9 show information of the book */}
                                     <Col size="9" className="bookInfo">
                                         <Row>
                                             <h2 className="bookTitle">{savedbook.title}</h2>
